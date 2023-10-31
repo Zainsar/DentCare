@@ -118,6 +118,23 @@
             });
         });
 
+        $('#hospital-search').on('input', function () {
+            let query = $(this).val();
+            console.log('Query:', query);
+            if (query.trim() === '') {
+                $('#suggestions-container').empty();
+                return;
+            }
+            $.ajax({
+                url: 'searche.php',
+                method: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    $('#suggestions-container').html(data);
+                }
+            });
+        });
+
         $(document).on('click', '.suggestion', function () {
             let hospitalId = $(this).data('hospital-id');
             console.log('Hospital ID:', hospitalId);
