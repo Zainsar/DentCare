@@ -9,27 +9,15 @@
                             class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                     <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About
                         Us</a>
-                    <a class="text-light mb-2" href="service.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                        Services</a>
-                    <a class="text-light mb-2" href="about.php"><i
-                            class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="contact.php"><i class="bi bi-arrow-right text-primary me-2"></i>Contact
-                        Us</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h3 class="text-white mb-4">Popular Links</h3>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="price.php"><i
-                            class="bi bi-arrow-right text-primary me-2"></i>Pricing Plan</a>
-                    <a class="text-light mb-2" href="doctors.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                        Doctors</a>
-                    <a class="text-light mb-2" href="testimonial.php"><i
-                            class="bi bi-arrow-right text-primary me-2"></i>Testimonial</a>
-                    <a class="text-light mb-2" href="appointment.php"><i
-                            class="bi bi-arrow-right text-primary me-2"></i>Appointment</a>
-                    <a class="text-light" href="appointmentview.php"><i
-                            class="bi bi-arrow-right text-primary me-2"></i>Appointment View</a>
+                    <a class="text-light mb-2" href="profile.php"><i
+                            class="bi bi-arrow-right text-primary me-2"></i>Profile</a>
+                    <a class="text-light mb-2" href="updatepassword.php"><i
+                            class="bi bi-arrow-right text-primary me-2"></i>Change Password</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">

@@ -81,24 +81,7 @@ if (!isset($_SESSION['doctor'])) {
             <div class="navbar-nav ms-auto py-0">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
-                <a href="service.php" class="nav-item nav-link">Service</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="price.php" class="dropdown-item">Pricing Plan</a>
-                        <hr>
-                        <a href="doctors.php" class="dropdown-item">Our Doctors</a>
-                        <hr>
-                        <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                        <hr>
-                        <a href="appointmentview.php" class="dropdown-item">Appointment View</a>
-                    </div>
-                </div>
-                <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
-            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                    class="fa fa-search"></i></button>
-            <a href="appointment.php" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
         </div>
         <?php
         require("../includes/config.php");
@@ -113,7 +96,7 @@ if (!isset($_SESSION['doctor'])) {
                     <span>
                         <?php echo $result1['Dusername']; ?>
                     </span>
-                    <img src="<?php echo 'doctorimg/' . $result1['Dimage'] ?>" alt="profile Image" height="40px"
+                    <img src="<?php echo '../doctors/doctorimg/' . $result1['Dimage'] ?>" alt="profile Image" height="40px"
                         width="40px" style="border-radius: 50%; border: 2px solid black;">
                 </a>
                 <ul class="dropdown-menu" style="padding: 0%; margin:0%;">

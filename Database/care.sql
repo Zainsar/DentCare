@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 10:05 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Oct 31, 2023 at 12:58 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,6 +38,15 @@ CREATE TABLE `appointment` (
   `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`pid`, `pname`, `pemail`, `pdoctor`, `pspecialization`, `pday`, `ptime`, `pstatus`) VALUES
+(1, 'ifra', 'ifra-1@gmail.com', 2, 'Gynecologist', 'Wednesday & Friday', '3pm to 8pm', 1),
+(2, 'ifra', 'ifra-1@gmail.com', 2, 'Gynecologist', 'Wednesday & Friday', '3pm to 8pm', 1),
+(3, 'ifra', 'ifra-1@gmail.com', 1, 'General physician', 'monday , Wednesday , Friday', '11am to 3pm', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -63,7 +72,7 @@ CREATE TABLE `doctors` (
 
 INSERT INTO `doctors` (`id`, `Dusername`, `Demail`, `Dpassword`, `specialization`, `Dcity`, `Days`, `Dtime`, `dstatus`, `Dimage`) VALUES
 (1, 'Dr Sarfraz', 'sarfrazahmed@gmail.com', '$2y$10$SGoyGMls1U99dsgGbzSKfeOd1Y5QD0likdxevLON.Mq7yY4rlWsPi', 'General physician', 'Karachi', 'monday , Wednesday , Friday', '11am to 3pm', 1, ''),
-(2, 'Dr Kiram', 'kiran@gmail.com', '$2y$10$nTpInJHs1fFB1uk05dHOR.oW8gFND5q2ZOObx9A.zz24Vc7LvCfPa', 'Gynecologist', 'Karachi', 'Wednesday & Friday', '3pm to 8pm', 1, '');
+(2, 'Dr Kiran', 'kiran@gmail.com', '$2y$10$nTpInJHs1fFB1uk05dHOR.oW8gFND5q2ZOObx9A.zz24Vc7LvCfPa', '', 'Karachi', '', '3pm to 8pm', 1, 'i.webp');
 
 -- --------------------------------------------------------
 
@@ -124,7 +133,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `doctors`

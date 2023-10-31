@@ -144,8 +144,8 @@ if (isset($_POST["submit"])) {
         <script>
         alert('Your Appointment not set.')
         </script>";
-        }
     }
+}
 
 
 ?>
@@ -493,8 +493,8 @@ if (isset($_POST["submit"])) {
                     <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                         <div class="team-item">
                             <div class="position-relative rounded-top" style="z-index: 1;">
-                                <img class="img-fluid rounded-top w-100"
-                                    src="<?php echo 'Doctor/doctorimg/' . $row['Dimage'] ?>" alt="Doctor Image">
+                                <img class="img-fluid rounded-top w-100" style="height: 300px;"
+                                    src="<?php echo 'doctors/doctorimg/' . $row['Dimage'] ?>" alt="Doctor Image">
                                 <!-- <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
             <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
             <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>

@@ -3,11 +3,23 @@ include('../includes/config.php');
 include('../includes/navbar.php');
 
 ?>
-<div class="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" data-wow-delay="0.1s"
-    style="margin-top: 90px;">
+<!-- Hero Start -->
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Appointment</h1>
+            <a href="" class="h4 text-white">Home</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="" class="h4 text-white">Appointment</a>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+<div class="container-fluid bg-primary bg-appointment mb-2 wow fadeInUp" data-wow-delay="0.1s"
+    style="margin-top: 20px;">
     <div class="container">
         <div class="row gx-5">
-            <div class="col-lg-12">
+            <div class="col-lg-12 mt-5 mb-5">
                 <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
                     data-wow-delay="0.6s">
                     <h1 class="text-white mb-4">Appointment View</h1>
