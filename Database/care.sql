@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2023 at 01:18 PM
+-- Generation Time: Oct 31, 2023 at 10:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -32,20 +32,11 @@ CREATE TABLE `appointment` (
   `pname` varchar(255) NOT NULL,
   `pemail` varchar(255) NOT NULL,
   `pdoctor` int(255) NOT NULL,
-  `pspecialization` int(255) NOT NULL,
-  `pdate` date NOT NULL,
-  `ptime` time NOT NULL,
+  `pspecialization` varchar(255) NOT NULL,
+  `pday` text NOT NULL,
+  `ptime` text NOT NULL,
   `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`pid`, `pname`, `pemail`, `pdoctor`, `pspecialization`, `pdate`, `ptime`, `pstatus`) VALUES
-(1, 'ifra', 'ifra-1@gmail.com', 2, 2, '2023-10-11', '01:00:00', 1),
-(2, 'Moiz', 'moiz@gmail.com', 1, 1, '2023-10-25', '07:58:00', 1),
-(3, 'Zain Sarfraz', 'zainsarfraz82@gmail.com', 1, 1, '2023-10-30', '19:14:00', 1);
 
 -- --------------------------------------------------------
 
@@ -60,7 +51,8 @@ CREATE TABLE `doctors` (
   `Dpassword` varchar(255) NOT NULL,
   `specialization` varchar(255) NOT NULL,
   `Dcity` varchar(255) NOT NULL,
-  `Dtime` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `Days` varchar(255) NOT NULL,
+  `Dtime` text NOT NULL,
   `dstatus` tinyint(255) NOT NULL DEFAULT 1,
   `Dimage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -69,9 +61,9 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `Dusername`, `Demail`, `Dpassword`, `specialization`, `Dcity`, `Dtime`, `dstatus`, `Dimage`) VALUES
-(1, 'Dr Shahid', 'shahid@gmail.com', '12345', 'General physician', 'Karachi', '2023-10-27 14:43:54.000000', 1, ''),
-(2, 'Dr Kiran', 'kiran@gmail.com', '123456', 'Gynecologist', 'Karachi', '2023-10-23 14:45:52.000000', 1, '');
+INSERT INTO `doctors` (`id`, `Dusername`, `Demail`, `Dpassword`, `specialization`, `Dcity`, `Days`, `Dtime`, `dstatus`, `Dimage`) VALUES
+(1, 'Dr Sarfraz', 'sarfrazahmed@gmail.com', '$2y$10$SGoyGMls1U99dsgGbzSKfeOd1Y5QD0likdxevLON.Mq7yY4rlWsPi', 'General physician', 'Karachi', 'monday , Wednesday , Friday', '11am to 3pm', 1, ''),
+(2, 'Dr Kiram', 'kiran@gmail.com', '$2y$10$nTpInJHs1fFB1uk05dHOR.oW8gFND5q2ZOObx9A.zz24Vc7LvCfPa', 'Gynecologist', 'Karachi', 'Wednesday & Friday', '3pm to 8pm', 1, '');
 
 -- --------------------------------------------------------
 
@@ -98,7 +90,8 @@ INSERT INTO `patient` (`id`, `name`, `email`, `password`, `phone`, `PImage`) VAL
 (3, 'hanzala', 'hanzala@gmail.com', '$2y$10$lTgZXl737WIvY/FWWT6ybeUqRbMjZ9ulaf2pF90sbmaCq9Rv9M/g6', '0', ''),
 (5, 'Abdul Moiz', 'thunder@gmail.com', '$2y$10$bWgC1w2.ix.yZZs.Rvw6deo/Atvl6OTeA0Remeg3SK.WsiN5Ek17a', '0', ''),
 (6, 'ifra', 'ifra-1@gmail.com', '$2y$10$a7t.auGCpACqch5OVf.K6uQ.45.jmz/XpX5k0tHJLpyhVqv7kx94G', '03172667345', 'random.jpeg'),
-(7, 'Zain', 'zainsarfraz82@gmail.com', '$2y$10$DdOm4UYodR7F/i210.HL7.S4YPZBnJuBAIyTnKPAE0HyoVsAOL/W2', '03172667345', 'mine pic.jpg');
+(7, 'Zain', 'zainsarfraz82@gmail.com', '$2y$10$DdOm4UYodR7F/i210.HL7.S4YPZBnJuBAIyTnKPAE0HyoVsAOL/W2', '03172667345', 'mine pic.jpg'),
+(8, 'sir ebad', 'ebad@aptechnorth.edu.pk', '$2y$10$VC66PMbTF2k4.lqTbyqFue6NHNMfMq7fxh2L23JjlzVdMFNRzwNTW', '03123456789', 'ebad.jfif');
 
 --
 -- Indexes for dumped tables
@@ -109,10 +102,7 @@ INSERT INTO `patient` (`id`, `name`, `email`, `password`, `phone`, `PImage`) VAL
 --
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`pid`),
-  ADD KEY `foriegnkey` (`pdoctor`),
-  ADD KEY `fk` (`pspecialization`),
-  ADD KEY `us` (`pname`),
-  ADD KEY `pp` (`pemail`);
+  ADD KEY `fk` (`pdoctor`);
 
 --
 -- Indexes for table `doctors`
@@ -134,7 +124,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -146,7 +136,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -156,8 +146,7 @@ ALTER TABLE `patient`
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD CONSTRAINT `fk` FOREIGN KEY (`pspecialization`) REFERENCES `doctors` (`id`),
-  ADD CONSTRAINT `foriegnkey` FOREIGN KEY (`pdoctor`) REFERENCES `doctors` (`id`);
+  ADD CONSTRAINT `fk` FOREIGN KEY (`pdoctor`) REFERENCES `doctors` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

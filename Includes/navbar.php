@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['useremail'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['doctor'])) {
+    header("Location:doc_login.php");
     // exit();
 
 }
@@ -18,7 +18,7 @@ if (!isset($_SESSION['useremail'])) {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="assets/img/favicon.ico" rel="icon">
+    <link href="../assets/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,16 +31,16 @@ if (!isset($_SESSION['useremail'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="assets/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../assets/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <style>
         form {
             width: 100%;
@@ -101,19 +101,19 @@ if (!isset($_SESSION['useremail'])) {
             <a href="appointment.php" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
         </div>
         <?php
-        require("includes/config.php");
-        $username = $_SESSION["useremail"];
-        $query = "SELECT * FROM `Patient` WHERE `email` = '$username'";
+        require("../includes/config.php");
+        $username = $_SESSION["doctor"];
+        $query = "SELECT * FROM `doctors` WHERE `Demail` = '$username'";
         $result = mysqli_query($connection, $query);
         $result1 = mysqli_fetch_assoc($result);
         ?>
         <div class="navbar-nav">
-            <li class=" dropdown">
+            <li class="dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <span>
-                        <?php echo $result1['name']; ?>
+                        <?php echo $result1['Dusername']; ?>
                     </span>
-                    <img src="<?php echo 'userimg/' . $result1['PImage'] ?>" alt="profile Image" height="40px"
+                    <img src="<?php echo 'doctorimg/' . $result1['Dimage'] ?>" alt="profile Image" height="40px"
                         width="40px" style="border-radius: 50%; border: 2px solid black;">
                 </a>
                 <ul class="dropdown-menu" style="padding: 0%; margin:0%;">
@@ -130,7 +130,7 @@ if (!isset($_SESSION['useremail'])) {
     </nav>
     <!-- Navbar End -->
     <!-- Spinner Start -->
-    <!-- <div id="spinner"
+    <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary m-1" role="status">
             <span class="sr-only">Loading...</span>
@@ -141,7 +141,7 @@ if (!isset($_SESSION['useremail'])) {
         <div class="spinner-grow text-secondary m-1" role="status">
             <span class="sr-only">Loading...</span>
         </div>
-    </div> -->
+    </div>
     <!-- Spinner End -->
 
 

@@ -31,13 +31,13 @@ if (isset($_POST['register'])) {
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com'; // SMTP server
       $mail->SMTPAuth = true;
-      $mail->Username = 'zainsarfraz745@gmail.com'; // Sender's email address
-      $mail->Password = 'lkqe avoe gwnx xdcr';
+      $mail->Username = 'ifrakhan2804@gmail.com'; // Sender's email address
+      $mail->Password = 'wwuq dupp rnbo tcww';
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS encryption
       $mail->Port = 587; // Port for TLS
 
       // Recipient settings
-      $mail->setFrom('zainsarfraz745@gmail.com', 'Zain');
+      $mail->setFrom('ifrakhan2804@gmail.com', 'Ifra');
       $mail->addAddress($user_email, $name); // User ka email address
 
       // Email content
@@ -72,8 +72,7 @@ if (isset($_POST['register'])) {
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">

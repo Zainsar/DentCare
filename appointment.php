@@ -7,11 +7,11 @@ if (isset($_POST["submit"])) {
     $email = $_POST["pemail"];
     $doctor = $_POST["pdoctor"];
     $specialization = $_POST["pspecialization"];
-    $date = $_POST["pdate"];
+    $date = $_POST["pday"];
     $time = $_POST["ptime"];
     // print_r($_POST);
     // die();
-    $insert = "INSERT INTO `appointment` (`pname`, `pemail`, `pdoctor`, `pspecialization`, `pdate`, `ptime`) VALUES ('$name', '$email', '$doctor', '$specialization', '$date', '$time')";
+    $insert = "INSERT INTO `appointment` (`pname`, `pemail`, `pdoctor`, `pspecialization`, `pday`, `ptime`) VALUES ('$name', '$email', '$doctor', '$specialization', '$date', '$time')";
     $connection_insert = mysqli_query($connection, $insert);
     if ($connection_insert) {
         echo "
@@ -24,10 +24,8 @@ if (isset($_POST["submit"])) {
         <script>
         alert('Your Appointment not set.')
         </script>";
-
-
+        }
     }
-}
 
 
 ?>
@@ -83,7 +81,8 @@ if (isset($_POST["submit"])) {
                                             style="height: 55px;">
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <select name="pdoctor" class="form-select bg-light border-0" style="height: 55px;">
+                                        <select name="pdoctor" id="doctorSelect" class="form-select bg-light border-0"
+                                            style="height: 55px;">
 
                                             <option selected>Select A Doctors</option>
                                             <?php
@@ -102,33 +101,21 @@ if (isset($_POST["submit"])) {
                                         </select>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <select name="pspecialization" class="form-select bg-light border-0"
-                                            style="height: 55px;">
-                                            <option selected>Select A Service</option>
-                                            <?php
-                                            $fetch = "SELECT * FROM `doctors` WHERE `dstatus` = '1'";
-                                            $conns = mysqli_query($connection, $fetch);
-                                            if (mysqli_num_rows($conns) > 0) {
-                                                while ($row = mysqli_fetch_assoc($conns)) {
-                                                    ?>
-                                                    <option value="<?php echo $row['id'] ?>">
-                                                        <?php echo $row['specialization'] ?>
-                                                    </option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
+                                        <div>
+                                            <input type="text" id="specialization" name="pspecialization"
+                                                class="form-control bg-light border-0" placeholder="Specialization"
+                                                style="height: 55px;">
+                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <div class="date">
-                                            <input type="date" name="pdate" class="form-control bg-light border-0 "
+                                            <input type="text" id="days" name="pday" class="form-control bg-light border-0"
                                                 placeholder="Appointment Date" style="height: 55px;">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <div class="time">
-                                            <input type="time" name="ptime" class="form-control bg-light border-0 "
+                                            <input type="text" id="timing" name="ptime" class="form-control bg-light border-0"
                                                 placeholder="Appointment Time" style="height: 55px;">
                                         </div>
                                     </div>
@@ -148,6 +135,25 @@ if (isset($_POST["submit"])) {
     </div>
 </div>
 <!-- Appointment End -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#doctorSelect").change(function () {
+            var doctorId = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "getDoctorDetails.php",
+                data: { doctorId: doctorId },
+                dataType: "json",
+                success: function (data) {
+                    $("#specialization").val(data.specialization);
+                    $("#days").val(data.date);
+                    $("#timing").val(data.time);
+                }
+            });
+        });
+    });
+</script>
 
 <?php
 include('includes/footer.php');
