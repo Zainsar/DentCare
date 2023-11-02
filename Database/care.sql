@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 12:58 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Nov 02, 2023 at 10:13 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `Aid` int(11) NOT NULL,
+  `Aname` varchar(255) NOT NULL,
+  `Aemail` varchar(255) NOT NULL,
+  `Apassword` varchar(255) NOT NULL,
+  `AImage` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`Aid`, `Aname`, `Aemail`, `Apassword`, `AImage`) VALUES
+(1, 'Ifra', 'ifra@gmail.com', '$2y$10$5l3lAjcaopgu8v7qEUsnn.UpS5xNkCXQcmVCXsGC9oY4O9iGrEqmO', 'barbie 1.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `appointment`
 --
 
@@ -38,14 +59,33 @@ CREATE TABLE `appointment` (
   `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `appointment`
+-- Table structure for table `blogs`
 --
 
-INSERT INTO `appointment` (`pid`, `pname`, `pemail`, `pdoctor`, `pspecialization`, `pday`, `ptime`, `pstatus`) VALUES
-(1, 'ifra', 'ifra-1@gmail.com', 2, 'Gynecologist', 'Wednesday & Friday', '3pm to 8pm', 1),
-(2, 'ifra', 'ifra-1@gmail.com', 2, 'Gynecologist', 'Wednesday & Friday', '3pm to 8pm', 1),
-(3, 'ifra', 'ifra-1@gmail.com', 1, 'General physician', 'monday , Wednesday , Friday', '11am to 3pm', 1);
+CREATE TABLE `blogs` (
+  `bid` int(11) NOT NULL,
+  `bname` varchar(255) NOT NULL,
+  `bdescription` varchar(255) NOT NULL,
+  `btime` time(3) NOT NULL,
+  `bdate` date NOT NULL,
+  `bimage` varchar(255) NOT NULL,
+  `bstatus` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `cid` int(11) NOT NULL,
+  `Cities` varchar(255) NOT NULL,
+  `Cstatus` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -59,20 +99,12 @@ CREATE TABLE `doctors` (
   `Demail` varchar(255) NOT NULL,
   `Dpassword` varchar(255) NOT NULL,
   `specialization` varchar(255) NOT NULL,
-  `Dcity` varchar(255) NOT NULL,
+  `Dcity` int(11) NOT NULL,
   `Days` varchar(255) NOT NULL,
   `Dtime` text NOT NULL,
   `dstatus` tinyint(255) NOT NULL DEFAULT 1,
   `Dimage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`id`, `Dusername`, `Demail`, `Dpassword`, `specialization`, `Dcity`, `Days`, `Dtime`, `dstatus`, `Dimage`) VALUES
-(1, 'Dr Sarfraz', 'sarfrazahmed@gmail.com', '$2y$10$SGoyGMls1U99dsgGbzSKfeOd1Y5QD0likdxevLON.Mq7yY4rlWsPi', 'General physician', 'Karachi', 'monday , Wednesday , Friday', '11am to 3pm', 1, ''),
-(2, 'Dr Kiran', 'kiran@gmail.com', '$2y$10$nTpInJHs1fFB1uk05dHOR.oW8gFND5q2ZOObx9A.zz24Vc7LvCfPa', '', 'Karachi', '', '3pm to 8pm', 1, 'i.webp');
 
 -- --------------------------------------------------------
 
@@ -86,25 +118,19 @@ CREATE TABLE `patient` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` text NOT NULL,
-  `PImage` varchar(255) NOT NULL
+  `PImage` varchar(255) NOT NULL,
+  `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`id`, `name`, `email`, `password`, `phone`, `PImage`) VALUES
-(1, 'mosa', 'mosa@gmail.com', '$2y$10$QdlVjkO9zjALlQKvZzZL/u4X0oaBGhfLWlkpPKpGvjKZU4P1ud/Zq', '0', ''),
-(2, 'ifra', 'ifra@gmail.com', '$2y$10$jETxJPBLujXSfOBnQI2Kh.BCnIqjfkg4k2MgfK3YWq/msmOnnymrK', '0', ''),
-(3, 'hanzala', 'hanzala@gmail.com', '$2y$10$lTgZXl737WIvY/FWWT6ybeUqRbMjZ9ulaf2pF90sbmaCq9Rv9M/g6', '0', ''),
-(5, 'Abdul Moiz', 'thunder@gmail.com', '$2y$10$bWgC1w2.ix.yZZs.Rvw6deo/Atvl6OTeA0Remeg3SK.WsiN5Ek17a', '0', ''),
-(6, 'ifra', 'ifra-1@gmail.com', '$2y$10$a7t.auGCpACqch5OVf.K6uQ.45.jmz/XpX5k0tHJLpyhVqv7kx94G', '03172667345', 'random.jpeg'),
-(7, 'Zain', 'zainsarfraz82@gmail.com', '$2y$10$DdOm4UYodR7F/i210.HL7.S4YPZBnJuBAIyTnKPAE0HyoVsAOL/W2', '03172667345', 'mine pic.jpg'),
-(8, 'sir ebad', 'ebad@aptechnorth.edu.pk', '$2y$10$VC66PMbTF2k4.lqTbyqFue6NHNMfMq7fxh2L23JjlzVdMFNRzwNTW', '03123456789', 'ebad.jfif');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`Aid`);
 
 --
 -- Indexes for table `appointment`
@@ -114,10 +140,23 @@ ALTER TABLE `appointment`
   ADD KEY `fk` (`pdoctor`);
 
 --
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`bid`);
+
+--
+-- Indexes for table `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`cid`);
+
+--
 -- Indexes for table `doctors`
 --
 ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tt` (`Dcity`);
 
 --
 -- Indexes for table `patient`
@@ -130,22 +169,40 @@ ALTER TABLE `patient`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `Aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -156,6 +213,12 @@ ALTER TABLE `patient`
 --
 ALTER TABLE `appointment`
   ADD CONSTRAINT `fk` FOREIGN KEY (`pdoctor`) REFERENCES `doctors` (`id`);
+
+--
+-- Constraints for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD CONSTRAINT `tt` FOREIGN KEY (`Dcity`) REFERENCES `cities` (`cid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

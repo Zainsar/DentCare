@@ -1,99 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include('../includes/adminheader1.php');
+include('../includes/config.php');
 
-<head>
-    <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+require '../vendor/autoload.php'; // Composer se install kiya hua ho to yeh line add karein
+// PHPMailer Integration
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+if (isset($_POST['register'])) {
+  $name = $_POST['Aname'];
+  $email = $_POST['Aemail'];
+  $Password = $_POST['Apassword'];
+  // print_r($_POST);
+// die();
+  $hashPass = password_hash($Password, PASSWORD_BCRYPT);
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+  $check_email = "SELECT * from `admin` where Aemail = '$email' ";
+  $run_email = mysqli_query($connection, $check_email);
+  if (mysqli_num_rows($run_email) > 0) {
+    echo "<script> alert('Email already exist'); </script>";
+  } else {
+    // User ka email address $user_email variable mein store karein
+    $user_email = $email;
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    // PHPMailer configuration
+    $mail = new PHPMailer(true);
+    try {
+      // Server settings
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com'; // SMTP server
+      $mail->SMTPAuth = true;
+      $mail->Username = 'ifrakhan2804@gmail.com'; // Sender's email address
+      $mail->Password = 'wwuq dupp rnbo tcww';
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS encryption
+      $mail->Port = 587; // Port for TLS
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
+      // Recipient settings
+      $mail->setFrom('ifrakhan2804@gmail.com', 'Ifra');
+      $mail->addAddress($user_email, $name); // User ka email address
 
-<body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+      // Email content
+      $mail->isHTML(true);
+      $mail->Subject = 'Welcome to Our Website';
+      $mail->Body = 'Thank you for registering on our website.';
+
+      $mail->send();
+    } catch (Exception $e) {
+      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    $insert = "INSERT INTO `admin` (`Aname`, `Aemail`, `Apassword`) VALUES ('$name', '$email','$hashPass')";
+    $connect_insert = mysqli_query($connection, $insert);
+  }
+  header("location:signin.php");
+}
+?>
+
+<!-- Sign Up Start -->
+<div class="container-fluid" style="border: 2px solid black;">
+  <div class="row h-100 align-items-center justify-content-center" style="min-height: 60vh; margin-top:10px;">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+      <div class="bg-light rounded p-4 p-sm-5">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h3>Sign Up</h3>
         </div>
-        <!-- Spinner End -->
-
-
-        <!-- Sign Up Start -->
-        <div class="container-fluid">
-            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
-                            </a>
-                            <h3>Sign Up</h3>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingText" placeholder="jhondoe">
-                            <label for="floatingText">Username</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <a href="">Forgot Password</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                        <p class="text-center mb-0">Already have an Account? <a href="">Sign In</a></p>
-                    </div>
-                </div>
+        <form action="signup.php" method="post">
+          <div class="form-floating mb-3">
+            <input name="Aname" type="text" class="form-control" id="floatingText" placeholder="jhondoe">
+            <label for="floatingText">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" name="Aemail" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input type="password" name="Apassword" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-        </div>
-        <!-- Sign Up End -->
+            <a href="">Forgot Password</a>
+          </div>
+          <button type="submit" name="register" class="btn btn-primary py-2 w-100">Sign Up</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+<!-- Sign Up End -->
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/chart/chart.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+
+
 </body>
+
 
 </html>

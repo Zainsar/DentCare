@@ -96,7 +96,7 @@ if (isset($_POST['register'])) {
     <div class="container">
       <div class="row">
         <div class="col-md-12 ftco-animate">
-          <form action="" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5" id="form">
+          <form action="signup.php" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5" id="form">
             <h3 class="mb-4 billing-heading"> Please register Yourself</h3>
             <div class="row align-items-end">
               <div class="col-md-12 py-2 ">

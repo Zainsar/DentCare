@@ -78,7 +78,7 @@ if(isset($_POST['submit'])){
   <div class="col-md-6">
     <label for="validationDefault04" class="form-label">Specialization</label>
     <select class="form-select" name="specialization" id="validationDefault04" required>
-      <option selected >Choose...</option>
+      <option selected >Specialization</option>
       <option>Neuro Sergon</option>
       <option>Gynecologist</option>
       <option>General physician</option>
@@ -91,15 +91,30 @@ if(isset($_POST['submit'])){
   </div>
   <div class="col-md-6">
     <label for="validationDefault03" class="form-label">City</label>
-    <input type="text" name="Dcity" class="form-control" id="validationDefault03" required>
+    <select class="form-select" name="Dcity" id="validationDefault04" required>
+        <option selected >Cities</option>
+    <?php
+    $fetchcity = "SELECT * FROM `cities`";
+    $fetchcities = mysqli_query($connection, $fetchcity);
+    if (mysqli_num_rows($fetchcities) > 0){
+    ?>
+        <?php
+        while($row=mysqli_fetch_assoc($fetchcities)){
+        ?> 
+      <option value="<?php echo $row['cid']?>"><?php echo $row['Cities']?></option>
+      <?php
+      }
+    }
+    ?>
+    </select>
   </div>
   <div class="col-md-6">
     <label for="validationDefault03" class="form-label">Days</label>
-    <input type="text" class="form-control" name="Ddays" id="validationDefault03" required>
+    <input type="text" class="form-control" name="Ddays" id="validationDefault03" placeholder="Mon,Tues,Wed,..." required>
   </div>
   <div class="col-md-6">
     <label for="validationDefault03" class="form-label">Timimg</label>
-    <input type="text" class="form-control" name="Dtime" id="validationDefault03" required>
+    <input type="text" class="form-control" name="Dtime" id="validationDefault03" placeholder="12am to 12pm" required>
   </div>
   <div class="col-12">
     <div class="form-check">
