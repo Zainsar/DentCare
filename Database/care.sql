@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 10:13 AM
+-- Generation Time: Nov 03, 2023 at 10:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -59,6 +59,14 @@ CREATE TABLE `appointment` (
   `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`pid`, `pname`, `pemail`, `pdoctor`, `pspecialization`, `pday`, `ptime`, `pstatus`) VALUES
+(4, 'Ifra', 'ifra@gmail.com', 9, 'General physician', 'monday , Wednesday , Friday', '2pm to 7pm', 1),
+(5, 'Subhan', 'ifra@gmail.com', 9, 'General physician', 'monday , Wednesday , Friday', '2pm to 7pm', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +83,13 @@ CREATE TABLE `blogs` (
   `bstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`bid`, `bname`, `bdescription`, `btime`, `bdate`, `bimage`, `bstatus`) VALUES
+(1, 'medical', 'Health and science', '05:33:00.000', '2023-11-15', 'IMG-20200227-WA0001.jpg', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -86,6 +101,21 @@ CREATE TABLE `cities` (
   `Cities` varchar(255) NOT NULL,
   `Cstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`cid`, `Cities`, `Cstatus`) VALUES
+(5, 'Karachi', 1),
+(6, 'Sukkur', 1),
+(7, 'Lahore', 1),
+(8, 'Hyderabad', 1),
+(9, 'Gujranwala', 1),
+(10, 'NawabShah', 1),
+(11, 'Islamabad', 1),
+(12, 'Gotki', 1),
+(13, 'Rawalpindi', 1);
 
 -- --------------------------------------------------------
 
@@ -106,6 +136,13 @@ CREATE TABLE `doctors` (
   `Dimage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `Dusername`, `Demail`, `Dpassword`, `specialization`, `Dcity`, `Days`, `Dtime`, `dstatus`, `Dimage`) VALUES
+(9, 'Dr Sarfraz', 'sarfrazahmed@gmail.com', '$2y$10$5zUBsw9ZhoqaJiN5MIvOMeR8asec5MiNZlUPFyVrTUu1gPnH5qmzS', 'General physician', 5, 'monday , Wednesday , Friday', '2pm to 7pm', 1, 'IMG-20220521-WA0145.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -121,6 +158,13 @@ CREATE TABLE `patient` (
   `PImage` varchar(255) NOT NULL,
   `pstatus` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`id`, `name`, `email`, `password`, `phone`, `PImage`, `pstatus`) VALUES
+(1, 'Ifra', 'ifra@gmail.com', '$2y$10$qKy5YRCmbawI.B4dAJYBOe9r4zllnSsF8iZUecVQehHaJ.jmAh6mm', '0318 2776688', 'random.jpeg', 1);
 
 --
 -- Indexes for dumped tables
@@ -178,31 +222,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
