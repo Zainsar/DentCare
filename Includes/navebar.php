@@ -19,7 +19,8 @@ if (!isset($_SESSION['useremail'])) {
 
     <!-- Favicon -->
     <link href="assets/img/favicon.ico" rel="icon">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -94,6 +95,7 @@ if (!isset($_SESSION['useremail'])) {
                         <a href="appointmentview.php" class="dropdown-item">Appointment View</a>
                     </div>
                 </div>
+                <a href="blog.php" class="nav-item nav-link">Blog</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 10:37 PM
+-- Generation Time: Nov 05, 2023 at 10:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -77,7 +77,7 @@ CREATE TABLE `blogs` (
   `bid` int(11) NOT NULL,
   `bname` varchar(255) NOT NULL,
   `bdescription` varchar(255) NOT NULL,
-  `btime` time(3) NOT NULL,
+  `btime` varchar(8) NOT NULL,
   `bdate` date NOT NULL,
   `bimage` varchar(255) NOT NULL,
   `bstatus` tinyint(4) NOT NULL DEFAULT 1
@@ -88,7 +88,8 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`bid`, `bname`, `bdescription`, `btime`, `bdate`, `bimage`, `bstatus`) VALUES
-(1, 'medical', 'Health and science', '05:33:00.000', '2023-11-15', 'IMG-20200227-WA0001.jpg', 1);
+(1, 'medical', 'Health and science', '01:00 pm', '2023-11-15', 'IMG-20200227-WA0001.jpg', 1),
+(3, 'Corona', 'Health and science', '01:00', '2024-01-01', 'IMG_20221127_142110_432.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -228,7 +229,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cities`
